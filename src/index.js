@@ -7,10 +7,16 @@ const morgan = require('morgan');
 const app = express();
 const port = 3000;
 
+const route = require('./routes');
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({
+    extended : true
+}));
+app.use(express.json());
 
 //HTTP logger
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 
 //Template engine
 app.engine('hbs', handlebars.engine(
@@ -20,12 +26,24 @@ app.set('view engine', 'hbs');
 //set path folder
 app.set('views', path.join(__dirname, 'resources/views'));
 
-app.get('/', (req,res) => {
-    res.render('home');
-})
+//Routes init
+route(app);
 
-app.get('/news', (req,res) => {
-    res.render('news');
-})
+// app.get('/', (req,res) => {
+//     res.render('home');
+// })
+
+// app.get('/news', (req,res) => {
+//     res.render('news');
+// })
+
+// app.get('/search', (req,res) => {
+//     res.render('search');
+// })
+
+// app.post('/search', (req,res) => {
+//     console.log(req.body);
+//     res.send('');
+// })
 
 app.listen(port, () => console.log(`Example app listening at ${port}`))
