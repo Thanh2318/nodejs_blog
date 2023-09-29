@@ -24,7 +24,7 @@ app.use(express.json());
 app.engine('hbs', handlebars.engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
 //set path folder
-    app.set('views', path.join(__dirname, 'resources/views'));
+app.set('views', path.join(__dirname, 'resources/views'));
 
 //Routes init
     route(app);
