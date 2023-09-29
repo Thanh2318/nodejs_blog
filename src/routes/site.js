@@ -9,5 +9,4 @@ router.use('/search', siteController.search);
 //home
 router.use('/', siteController.index);
 
-
 module.exports = router;
