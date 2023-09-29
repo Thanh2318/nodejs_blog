@@ -20,16 +20,17 @@
   },
   "homepage": "https://github.com/Thanh2318/nodejs_blog#readme",
   "lint-staged": {
-    "src/**/*.{js,json,scss}" : "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
   },
-  "husky" : {
-    "hooks" : {
+  "husky": {
+    "hooks": {
       "pre-commit": "lint-staged"
     }
   },
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^7.1.2"
+    "express-handlebars": "^7.1.2",
+    "mongoose": "^7.5.3"
   },
   "devDependencies": {
     "husky": "^8.0.3",
