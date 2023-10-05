@@ -65,6 +65,39 @@ class CourseController {
             .catch(next);
     }
 
+    //[POST] /courses/handle-form-actions
+    handleFormActions(req,res,next){
+        switch(req.body.action){
+            case 'delete':
+                Course.delete({_id: {$in: req.body.courseIds}})
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+            default:
+                res.json({message: 'action is invalid'})
+        }
+    }
+
+    //[POST] /courses/handle-trash-form-actions
+    handleTrashFormActions(req,res,next){
+        switch(req.body.action){
+            case 'restore':
+                Course.restore({_id: {$in: req.body.courseIds}})
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+
+            case 'force-delete':
+                Course.deleteOne({_id: {$in: req.body.courseIds}})
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+
+            default:
+                res.json({message: 'action is invalid'})
+        }
+    }
+
     
 }
 
